@@ -1,0 +1,120 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<meta charset="utf-8">
+
+		<title>Books</title>
+		<meta name="description" content="Skrt">
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Books</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#" onclick="loadHome(false)">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="yourbooks()">Your Books</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="yourrec()">Recommendations</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="addBook()">Submit a New Book</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input id="searchform" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="search()">Search</button>
+				</form>
+			</div>
+		</nav>
+		<div id="login" class="container">
+			<form id="loginform">
+				<label>User ID:</label> 
+                <input id='userid' type="text" class='form-control' placeholder='Enter user ID'>
+                <button onclick="login()">Login</button>
+                <button onclick="register()">Register</button>
+                <label id='wronguserid' style="display:none"></label>
+			</form>
+		</div>
+
+		<div id="main" style="display: none" class="container">
+			<div class="row m-5">
+				<div id="filterlist" class="col-2 p-4" style="overflow-y: scroll; height: 500px;"></div>
+				<div id="home" style="display:none" class="col-9 p-4">
+					<h2>Your Books</h2>
+					<div id="yourbooks" class="row flex-row flex-nowrap" style="overflow-x: auto">
+					</div>
+					<h2>Recommendations</h2>
+					<div id="recommendations" class="row flex-row flex-nowrap" style="overflow-x: auto">
+					</div>
+				</div>
+
+				<div id="allbooks" style="display:none" class="col-9 p-4"></div>
+
+				<div id="allrecs" style="display:none" class="col-9 p-4"></div>
+			</div>
+		</div>
+
+		<div id="searchresults" style="display: none" class="container">
+			<div class="row m-5">
+				<h2 class="col-6 pull-left" id="query"></h2>
+				<button type="button" class="close pull-right" aria-label="Close" onclick="toggleSearch()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="results"></div>
+		</div>
+
+		<div class="modal fade" id="bookModal" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document" style="text-align: center">
+				<div class="modal-content" style="display: inline-block">
+					<div class="modal-header">
+						<h5 class="modal-title" id="booktitle">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" onclick="closeModal()">&times;</button>
+					</div>
+					<div class="modal-body" id="bookbody"></div>
+					<div class="modal-body" id="yourrating"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">Close</button>
+						<button id="rateButton" type="button" class="btn btn-primary" onclick="changeRating()">Rate</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="newBookModal" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document" style="text-align: center">
+				<div class="modal-content" style="display: inline-block">
+					<div class="modal-header">
+						<h5 class="modal-title">Add a Book</h5>
+						<button type="button" class="close" data-dismiss="modal" onclick="closeNewBook()">&times;</button>
+					</div>
+					<div class="modal-body" >
+						<form>
+							<input id='new_title' type="text" class='form-control' placeholder='Title'>
+							<input id='new_genres' type="text" class='form-control' placeholder='Genres (enter 5, separated with a "|")'>
+							<select id='new_rating' class='mdb-select md-form'><option value='' disabled selected>Choose your rating</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeNewBook()">Cancel</button>
+						<button id="rateButton" type="button" class="btn btn-primary" onclick="addBook()">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type="text/javascript" src="{{url_for('static', filename='index.js')}}"></script>
+	</body>
+</html>
