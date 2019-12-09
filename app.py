@@ -7,10 +7,10 @@ from statistics import mean
 import matplotlib.pyplot as pyplot
 from scipy.stats.stats import pearsonr
 
-ratings = pd.read_csv("/ratings_parsed.csv")
-books = pd.read_csv("/books_parsed.csv")
+ratings = pd.read_csv("https://raw.githubusercontent.com/andrehui09/webtech-cw/master/ratings_parsed.csv?token=AIFZFH4R3ZTOEBJD2KTC3K257AFVI")
+books = pd.read_csv("https://raw.githubusercontent.com/andrehui09/webtech-cw/master/books_parsed.csv?token=AIFZFH6U2K553ULI7BE354K57AFZO")
 #print(books)
-users = pd.read_csv("/users_parsed.csv")
+users = pd.read_csv("https://raw.githubusercontent.com/andrehui09/webtech-cw/master/users_parsed.csv?token=AIFZFHYCLARBDTH6MUOVHE257AF3K")
 users["username"] = users["username"].astype(str)
 with open("tags.txt", "r") as f:
 	filters = f.read().split("\n")
