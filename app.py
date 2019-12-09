@@ -12,7 +12,7 @@ books = pd.read_csv("https://raw.githubusercontent.com/andrehui09/webtech-cw/mas
 #print(books)
 users = pd.read_csv("https://raw.githubusercontent.com/andrehui09/webtech-cw/master/users_parsed.csv?token=AIFZFHYCLARBDTH6MUOVHE257AF3K")
 users["username"] = users["username"].astype(str)
-with open("tags.txt", "r") as f:
+with open("https://raw.githubusercontent.com/andrehui09/webtech-cw/master/tags.txt?token=AIFZFHYXSBMO4BQFIBJDTY257AGNG", "r") as f:
 	filters = f.read().split("\n")
 	filters = filters[:-1]
 
